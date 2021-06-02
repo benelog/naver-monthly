@@ -137,8 +137,11 @@
 
       // 지원직무 토글메뉴
       $('.job-toggle-wrap h3').on('click', function () {
-        var jobId = $(this).parent().attr('id');
-        history.pushState({}, jobId, '#' + jobId);
+        var h3 = $(this);
+        var jobId = h3.parent().attr('id');
+        var jobTitle = h3.text();
+        document.title = "네이버 월간 영입 : " + jobTitle;
+        history.pushState({}, document.title, '#' + jobId);
         $(this).toggleClass('show');
       });
 
@@ -157,9 +160,13 @@
 
         $('#job-main-category .tab.main a[href="#' + categoryLarge + '"]').trigger('click');
         $('#job-main-category .tab.sub a[href="#' + categoryMedium + '"]').trigger('click');
-        $(hash).find('h3').addClass('show');
 
         if (hash && $(hash).length) {
+          var hashH3 = $(hash).find('h3')
+          hashH3.addClass('show');
+          var jobTitle = hashH3.text();
+          document.title = "네이버 월간 영입 : " + jobTitle;
+
           setTimeout(function () {
             $('body,html').animate({
               scrollTop: $(hash).offset().top - 40
