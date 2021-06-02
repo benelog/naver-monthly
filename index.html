@@ -137,6 +137,8 @@
 
       // 지원직무 토글메뉴
       $('.job-toggle-wrap h3').on('click', function () {
+        var jobId = $(this).parent().attr('id');
+        history.pushState({}, jobId, '#' + jobId);
         $(this).toggleClass('show');
       });
 
